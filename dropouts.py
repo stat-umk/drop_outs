@@ -1,9 +1,6 @@
 import streamlit as st
 import pandas as pd
-from matplotlib.lines import Line2D
 import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
 import plotly.express as px
 
 st.set_page_config(layout="wide")
