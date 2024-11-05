@@ -7,7 +7,7 @@ import seaborn as sns
 import plotly.express as px
 
 st.set_page_config(layout="wide")
-df = pd.read_excel('Dane/drop_out_dyscypliny.xlsx')
+df = pd.read_excel('drop_out_dyscypliny.xlsx')
 
 df['Dziedzina nauk'] = df['Dziedzina nauk'].replace({'nauki społeczne': 'społeczne'}).str.strip()
 
