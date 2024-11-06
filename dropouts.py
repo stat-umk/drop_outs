@@ -4,7 +4,7 @@ import plotly.express as px
 
 st.set_page_config(layout="wide")
 
-left_co, cent_co,last_co = st.columns([.2, .5, .3])
+left_co, cent_co,last_co = st.columns([.2, .6, .2])
 with last_co:
     st.image('logo-umk.png')
 
@@ -37,8 +37,8 @@ ms_dict = {}
 for i, col in enumerate(df['Dyscyplina']):
     ms_dict[col] = markery[df.iloc[i, 2]]
 
-left_c, right_c = st.columns([.7, .3])
-with left_c:
+left_c, cent_c, right_c = st.columns([.2, .6, .2])
+with cent_c:
     kat = st.selectbox('Proszę wybrać rodzaj studiów: ',['licencjackie','magisterskie','jednolite', 'inżynierskie'])
 
 kat_tr = {'licencjackie': 'lic',
