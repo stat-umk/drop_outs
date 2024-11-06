@@ -37,7 +37,9 @@ ms_dict = {}
 for i, col in enumerate(df['Dyscyplina']):
     ms_dict[col] = markery[df.iloc[i, 2]]
 
-kat = st.selectbox('Proszę wybrać rodzaj studiów: ',['licencjackie','magisterskie','jednolite', 'inżynierskie'])
+left_c, right_c = st.columns([.6, .4])
+with left_c:
+    kat = st.selectbox('Proszę wybrać rodzaj studiów: ',['licencjackie','magisterskie','jednolite', 'inżynierskie'])
 
 kat_tr = {'licencjackie': 'lic',
           'magisterskie': 'mag',
@@ -57,7 +59,7 @@ else:
 st.plotly_chart(px.scatter(df[df['Rodzaj studiów'] == kat_tr[kat]],
                     x = 'drop_out_sum', 
                     y = 'drop_out_proc',
-                color = 'Dziedzina nauk', width=1000, height=800,
+                color = 'Dziedzina nauk', width=800, height=600,
                 color_discrete_map=kolory,
                            symbol_map=markery,
                     hover_name = 'Kierunek wydziału',
