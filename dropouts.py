@@ -4,7 +4,7 @@ import plotly.express as px
 
 st.set_page_config(layout="wide")
 
-left_co, cent_co,last_co = st.columns([.2, .6, .2])
+left_co, cent_co,last_co = st.columns([.2, .5, .3])
 with last_co:
     st.image('logo-umk.png')
 
@@ -37,7 +37,7 @@ ms_dict = {}
 for i, col in enumerate(df['Dyscyplina']):
     ms_dict[col] = markery[df.iloc[i, 2]]
 
-left_c, right_c = st.columns([.6, .4])
+left_c, right_c = st.columns([.7, .3])
 with left_c:
     kat = st.selectbox('Proszę wybrać rodzaj studiów: ',['licencjackie','magisterskie','jednolite', 'inżynierskie'])
 
@@ -56,19 +56,21 @@ else:
     y_tr = df[df['Rodzaj studiów'] == kat_tr[kat]]['drop_out_proc'].mean()
     x_tr = df[df['Rodzaj studiów'] == kat_tr[kat]]['drop_out_sum'].mean()
 
-st.plotly_chart(px.scatter(df[df['Rodzaj studiów'] == kat_tr[kat]],
-                    x = 'drop_out_sum', 
-                    y = 'drop_out_proc',
-                color = 'Dziedzina nauk', width=800, height=600,
-                color_discrete_map=kolory,
-                           symbol_map=markery,
-                    hover_name = 'Kierunek wydziału',
-                        labels={
-                     "drop_out_sum": "Liczba osób rezygnujących ze studiów",
-                     "drop_out_proc": "Odsetek osób rezygnujących ze studiów"}).add_hline(y=y_tr, 
-                                                    line_width=1, 
-                                                    line_dash="dash", 
-                                                    line_color="gray").add_vline(x=x_tr, 
-                                                                                  line_width=1, 
-                                                                                  line_dash="dash", 
-                                                                                  line_color="gray"))
+l, c, r = st.columns([.2, .6, .2])
+with c:
+    st.plotly_chart(px.scatter(df[df['Rodzaj studiów'] == kat_tr[kat]],
+                        x = 'drop_out_sum', 
+                        y = 'drop_out_proc',
+                    color = 'Dziedzina nauk', width=800, height=600,
+                    color_discrete_map=kolory,
+                               symbol_map=markery,
+                        hover_name = 'Kierunek wydziału',
+                            labels={
+                         "drop_out_sum": "Liczba osób rezygnujących ze studiów",
+                         "drop_out_proc": "Odsetek osób rezygnujących ze studiów"}).add_hline(y=y_tr, 
+                                                        line_width=1, 
+                                                        line_dash="dash", 
+                                                        line_color="gray").add_vline(x=x_tr, 
+                                                                                      line_width=1, 
+                                                                                      line_dash="dash", 
+                                                                                      line_color="gray"))
