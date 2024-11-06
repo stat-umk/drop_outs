@@ -5,7 +5,7 @@ import plotly.express as px
 st.set_page_config(layout="wide")
 
 left_co, cent_co,last_co = st.columns([.2, .6, .2])
-with last_co:
+with left_co:
     st.image('logo-umk.png')
 
 
