@@ -3,6 +3,12 @@ import pandas as pd
 import plotly.express as px
 
 st.set_page_config(layout="wide")
+
+left_co, cent_co,last_co = st.columns([.2, .6, .2])
+with last_co:
+    st.image('logo-umk.png')
+
+
 df = pd.read_excel('drop_out_dyscypliny.xlsx')
 
 df['Dziedzina nauk'] = df['Dziedzina nauk'].replace({'nauki społeczne': 'społeczne'}).str.strip()
