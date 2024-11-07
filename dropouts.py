@@ -9,7 +9,7 @@ with left_co:
     st.image('logo-umk.png')
 
 
-df = pd.read_excel('drop_out_dyscypliny.xlsx')
+df = pd.read_excel('drop_out_dyscypliny_v2.xlsx')
 
 df['Dziedzina nauk'] = df['Dziedzina nauk'].replace({'nauki społeczne': 'społeczne'}).str.strip()
 
@@ -23,7 +23,7 @@ markery = {"społeczne": "o", "ścisłe i przyrodnicze": "o", "inżynieryjno-tec
 df['Dyscyplina'] = df['Dyscyplina'].replace({'nauki i Ziemi i środowisku': 'nauki o Ziemi i środowisku',
                          'nauka o zarządzaniu i jakości': 'nauki o zarządzaniu i jakości',
                          'nauka o zdrowiu': 'nauki o zdrowiu'})
-
+df = df[df['przyjeci'] > 0]
 col_dict = {}
 
 
