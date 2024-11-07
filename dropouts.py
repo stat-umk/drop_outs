@@ -53,7 +53,7 @@ elif kat_tr[kat] == 'jed':
     y_tr = df[df['Rodzaj studiów'] == kat_tr[kat]]['drop_out_proc'].median()
     x_tr = df[df['Rodzaj studiów'] == kat_tr[kat]]['drop_out_sum'].median()
 else:
-    y_tr = df[df['Rodzaj studiów'] == kat_tr[kat]]['drop_out_proc'].mean()
+    y_tr = df[df['Rodzaj studiów'] == kat_tr[kat]]['drop_out_proc'].median()
     x_tr = df[df['Rodzaj studiów'] == kat_tr[kat]]['drop_out_sum'].mean()
 
 l, c, r = st.columns([.2, .6, .2])
