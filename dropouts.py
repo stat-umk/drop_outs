@@ -24,6 +24,7 @@ df['Dyscyplina'] = df['Dyscyplina'].replace({'nauki i Ziemi i środowisku': 'nau
                          'nauka o zarządzaniu i jakości': 'nauki o zarządzaniu i jakości',
                          'nauka o zdrowiu': 'nauki o zdrowiu'})
 df = df[df['przyjeci'] > 0]
+df['markers'] = [markery[d] for d in df['Dziedzina nauk']
 col_dict = {}
 
 st.subheader('Skreślenia na pierwszym roku studiów pierwszego stopnia rozpoczynających się w roku akademickim 2021/2022')
@@ -44,6 +45,7 @@ st.plotly_chart(px.scatter(df2,
                 color_discrete_map=kolory,
                 #        symbol_map=markery,
                 hover_name = 'Kierunek wydziału',
+                hover_data = {'Dziedzina nauk':True, "drop_out_sum":':.0f', "drop_out_proc":':.2%', "markers": False},
                 labels={
                      "drop_out_sum": "Liczba osób rezygnujących ze studiów",
                      "drop_out_proc": "Odsetek osób rezygnujących ze studiów"}).add_hline(y=y_tr2, 
@@ -96,10 +98,10 @@ with c:
     st.plotly_chart(px.scatter(df[df['Rodzaj studiów'] == kat_tr[kat]],
                         x = 'drop_out_sum', 
                         y = 'drop_out_proc',
-                    color = 'Dziedzina nauk', width=800, height=600,
-                    color_discrete_map=kolory,
-                               symbol_map=markery,
+                    width=800, height=600,
+                    symbol = 'markers', color = 'Dziedzina nauk',   
                         hover_name = 'Kierunek wydziału',
+                        hover_data = {'Dziedzina nauk':True, "drop_out_sum":':.2f', "drop_out_proc":':.2%', "markers": False},
                             labels={
                          "drop_out_sum": "Liczba osób rezygnujących ze studiów",
                          "drop_out_proc": "Odsetek osób rezygnujących ze studiów"}).add_hline(y=y_tr, 
