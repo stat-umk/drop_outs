@@ -24,7 +24,7 @@ df['Dyscyplina'] = df['Dyscyplina'].replace({'nauki i Ziemi i środowisku': 'nau
                          'nauka o zarządzaniu i jakości': 'nauki o zarządzaniu i jakości',
                          'nauka o zdrowiu': 'nauki o zdrowiu'})
 df = df[df['przyjeci'] > 0]
-df['markers'] = [markery[d] for d in df['Dziedzina nauk']
+df['markers'] = [markery[d] for d in df['Dziedzina nauk']]
 col_dict = {}
 
 st.subheader('Skreślenia na pierwszym roku studiów pierwszego stopnia rozpoczynających się w roku akademickim 2021/2022')
