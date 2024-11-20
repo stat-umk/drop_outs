@@ -36,25 +36,28 @@ df2['markers'] = [markery[d] for d in df2['Dziedzina nauk']]
 df2.rename(columns = {'1 rok': 'drop_out_sum'}, inplace=True)
 y_tr2 = df2['drop_out_proc'].median()
 x_tr2 = df2['drop_out_sum'].median()
-st.plotly_chart(px.scatter(df2,
-                    x = 'drop_out_sum', 
-                    y = 'drop_out_proc',
-                
-                symbol = 'markers', color = 'Dziedzina nauk',         
-                           width=1000, height=800,
-                color_discrete_map=kolory,
-                #        symbol_map=markery,
-                hover_name = 'Kierunek wydziału',
-                hover_data = {'Dziedzina nauk':True, "drop_out_sum":':.0f', "drop_out_proc":':.2%', "markers": False},
-                labels={
-                     "drop_out_sum": "Liczba osób rezygnujących ze studiów",
-                     "drop_out_proc": "Odsetek osób rezygnujących ze studiów"}).add_hline(y=y_tr2, 
-                                                    line_width=1, 
-                                                    line_dash="dash", 
-                                                    line_color="gray").add_vline(x=x_tr2, 
-                                                                                  line_width=1, 
-                                                                                  line_dash="dash", 
-                                                                                  line_color="gray"))
+
+left_c0, cent_c0, right_c0 = st.columns([.2, .6, .2])
+with cent_c0:
+    st.plotly_chart(px.scatter(df2,
+                        x = 'drop_out_sum', 
+                        y = 'drop_out_proc',
+                    
+                    symbol = 'markers', color = 'Dziedzina nauk',         
+                               width=800, height=600,
+                    color_discrete_map=kolory,
+                    #        symbol_map=markery,
+                    hover_name = 'Kierunek wydziału',
+                    hover_data = {'Dziedzina nauk':True, "drop_out_sum":':.0f', "drop_out_proc":':.2%', "markers": False},
+                    labels={
+                         "drop_out_sum": "Liczba osób rezygnujących ze studiów",
+                         "drop_out_proc": "Odsetek osób rezygnujących ze studiów"}).add_hline(y=y_tr2, 
+                                                        line_width=1, 
+                                                        line_dash="dash", 
+                                                        line_color="gray").add_vline(x=x_tr2, 
+                                                                                      line_width=1, 
+                                                                                      line_dash="dash", 
+                                                                                      line_color="gray"))
 
 
 st.subheader('Łączna liczba skreśleń na studiach rozpoczynających się w roku akademickim 2021/2022')
