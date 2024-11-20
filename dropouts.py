@@ -17,8 +17,8 @@ kolory = {"społeczne": "#AA2896", "ścisłe i przyrodnicze": "#AAD23C", "inżyn
 "humanistyczne": "#00AFFA", "teologiczne": "#00A550", "medyczne i o zdrowiu": "#FA1414",
 "sztuka": "#FF8228", "weterynaryjne": "#AAD23C"}
 
-markery = {"społeczne": "o", "ścisłe i przyrodnicze": "o", "inżynieryjno-techniczne": "P",     
-"humanistyczne": "o", "teologiczne": "o", "medyczne i o zdrowiu": "o", "sztuka": "o", "weterynaryjne": "^"}
+markery = {"społeczne": "circle", "ścisłe i przyrodnicze": "circle", "inżynieryjno-techniczne": "cross",     
+"humanistyczne": "circle", "teologiczne": "circle", "medyczne i o zdrowiu": "circle", "sztuka": "circle", "weterynaryjne": "x"}
 
 df['Dyscyplina'] = df['Dyscyplina'].replace({'nauki i Ziemi i środowisku': 'nauki o Ziemi i środowisku',
                          'nauka o zarządzaniu i jakości': 'nauki o zarządzaniu i jakości',
