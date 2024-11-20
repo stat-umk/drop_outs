@@ -28,7 +28,7 @@ col_dict = {}
 
 st.subheader('Skreślenia na pierwszym roku studiów pierwszego stopnia rozpoczynających się w roku akademickim 2021/2022')
 
-df2 = pd.read_excel('Dane/do_1st.xlsx').dropna(axis=0)
+df2 = pd.read_excel('do_1st.xlsx').dropna(axis=0)
 df2['drop_out_proc'] = df2['1 rok']/df2['Wszyscy']
 df2['Dziedzina nauk'] = df2['Dziedzina nauk'].str.strip()
 df2['markers'] = [markery[d] for d in df2['Dziedzina nauk']]
