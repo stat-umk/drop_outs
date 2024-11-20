@@ -26,6 +26,36 @@ df['Dyscyplina'] = df['Dyscyplina'].replace({'nauki i Ziemi i środowisku': 'nau
 df = df[df['przyjeci'] > 0]
 col_dict = {}
 
+st.subheader('Skreślenia na pierwszym roku studiów pierwszego stopnia rozpoczynających się w roku akademickim 2021/2022')
+
+df2 = pd.read_excel('Dane/do_1st.xlsx').dropna(axis=0)
+df2['drop_out_proc'] = df2['1 rok']/df2['Wszyscy']
+df2['Dziedzina nauk'] = df2['Dziedzina nauk'].str.strip()
+df2['markers'] = [markery[d] for d in df2['Dziedzina nauk']]
+df2.rename(columns = {'1 rok': 'drop_out_sum'}, inplace=True)
+y_tr2 = df2['drop_out_proc'].median()
+x_tr2 = df2['drop_out_sum'].median()
+st.plotly_chart(px.scatter(df2,
+                    x = 'drop_out_sum', 
+                    y = 'drop_out_proc',
+                
+                symbol = 'markers', color = 'Dziedzina nauk',         
+                           width=1000, height=800,
+                color_discrete_map=kolory,
+                #        symbol_map=markery,
+                hover_name = 'Kierunek wydziału',
+                labels={
+                     "drop_out_sum": "Liczba osób rezygnujących ze studiów",
+                     "drop_out_proc": "Odsetek osób rezygnujących ze studiów"}).add_hline(y=y_tr2, 
+                                                    line_width=1, 
+                                                    line_dash="dash", 
+                                                    line_color="gray").add_vline(x=x_tr2, 
+                                                                                  line_width=1, 
+                                                                                  line_dash="dash", 
+                                                                                  line_color="gray"))
+
+
+st.subheader('Łączna liczba skreśleń na studiach rozpoczynających się w roku akademickim 2021/2022')
 
 for i, col in enumerate(df['Dyscyplina']):
     col_dict[col] = kolory[df.iloc[i, 2]]
@@ -36,6 +66,11 @@ df['shape'] = [markery[df.iloc[i, 2]] for i in range(df.shape[0])]
 ms_dict = {}
 for i, col in enumerate(df['Dyscyplina']):
     ms_dict[col] = markery[df.iloc[i, 2]]
+
+
+
+
+
 
 left_c, cent_c, right_c = st.columns([.2, .6, .2])
 with cent_c:
